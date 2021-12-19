@@ -1,0 +1,54 @@
+Syntax and Parsing: ok 
+foo:
+	BeginFunc
+goo:
+	BeginFunc
+	if x = 0 goto label9
+	t0 = 233
+	t1 = 12
+	t2 = t0 * t1
+	t3 = 9
+	t4 = t2 + t3
+	y = t4
+label9:	t5 = 0
+	Return t5
+	EndFunc
+
+label12:	t6 = 0
+	if t6 = 0 goto label17
+	t7 = 1
+	k = t7
+	goto label12
+label17:	PushParam zx
+	PushParam zx
+	PushParam k
+	PushParam y
+	x = LCall goo
+	PopParams 4
+	t8 = 0
+	Return t8
+	EndFunc
+
+main:
+	BeginFunc
+label2:	if z = 0 goto label10
+	t9 = 5
+	PushParam t9
+	t10 = 3
+	PushParam t10
+	z = LCall foo
+	PopParams 2
+	goto label2
+label10:	if z = 0 goto label19
+	t11 = a
+	x = t11
+	t12 = 0
+	if t12 = 0 goto label16
+	t13 = r
+	x = t13
+label16:	t14 = y
+	x = t14
+label19:	t15 = 5
+	Return t15
+	EndFunc
+

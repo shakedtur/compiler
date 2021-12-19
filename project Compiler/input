@@ -1,0 +1,28 @@
+
+
+procedure main() return integer{
+	
+	var y:string[50];
+	var x:char;
+	var z:boolean;
+	
+	while(z)
+	{	
+		z = foo(5,3);
+		
+	}
+
+	if(z)
+	{
+		x = 'a';
+		if(false)
+		{
+			x='r';
+		}
+		x = 'y';
+	}
+
+	return 5;
+}
+
+
