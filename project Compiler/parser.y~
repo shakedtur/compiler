@@ -18,6 +18,7 @@ program* ast;
 	char ch;
 	char* str;
 	int num;
+	real rea;
 	symbol_node* symbol;
 	symbol_ref* ref;
 	program* p;

@@ -11,7 +11,7 @@ char* freshVar(){
 
 char* freshLabel(){
 	char* str = malloc(10);
-	sprintf(str,"L%d",global_line_num);
+	sprintf(str,"label%d",global_line_num);
 
 	return str;
 }

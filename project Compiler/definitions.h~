@@ -85,6 +85,5 @@
 #define ERROR_UNDEC				101
 #define ERROR_UNDEC_PROC		102
 #define FOR_				103
-#define REAL_LITERAL_	 		104
-#define REAL_				105
+#define REAL_					104
 #endif

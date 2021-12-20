@@ -67,7 +67,7 @@ lit_integer* make_lit_integer(int value)
 
 
 
-lit_real* make_lit_real(int value)
+lit_real* make_lit_real(real value)
 {
 	lit_real* lit = emalloc(sizeof(lit_real));
 	lit->token = REAL_LITERAL_;
