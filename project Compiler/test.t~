@@ -16,5 +16,5 @@ int foo() {
 
 void main(){
 
-
+return NULL;
 }

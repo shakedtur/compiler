@@ -23,6 +23,7 @@ void print_ast(void* ast)
 	fn_call* call_ = (fn_call*)ast;
 	if_node* if_ = (if_node*)ast;
 	if_else_node* if_else_ = (if_else_node*)ast;
+	for_node* for_ = (for_node*)ast;
 	while_node* while_ = (while_node*)ast;
 	ret_stmt* ret_ = (ret_stmt*)ast;
 	expr* expr_ = (expr*)ast;
@@ -263,6 +264,12 @@ void print_ast(void* ast)
 		case RET_STMT_:
 			printf("return: ");
 			print_ast(ret_->exp);
+			break;
+
+		case FOR_:
+			printf("\nFOR: COND: ");
+			print_ast(for_->cond);
+			print_ast(for_->for_block);
 			break;
 
 		case WHILE_:

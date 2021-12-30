@@ -11,7 +11,7 @@ char* freshVar(){
 
 char* freshLabel(){
 	char* str = malloc(10);
-	sprintf(str,"label%d",global_line_num);
+	sprintf(str,"L%d",global_line_num);
 
 	return str;
 }
@@ -506,6 +506,9 @@ ir_vars* tacGeneration(void* ast) {
 			
 			break;
 
+		case REAL_:		
+			break;
+
 		case INTEGER_:
 			
 			break;
@@ -515,6 +518,9 @@ ir_vars* tacGeneration(void* ast) {
 			break;
 
 		case CHAR_:
+			
+			break;
+		case VOID_:
 			
 			break;
 

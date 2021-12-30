@@ -506,6 +506,9 @@ ir_vars* tacGeneration(void* ast) {
 			
 			break;
 
+		case REAL_:		
+			break;
+
 		case INTEGER_:
 			
 			break;

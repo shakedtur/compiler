@@ -40,6 +40,7 @@ void print_ast(void* ast)
 	//for semantics
 	symbol_node* symbol;
 
+
 	token = program_->token;
 	switch(token){
 

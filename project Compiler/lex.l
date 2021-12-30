@@ -27,13 +27,14 @@ PS [\!|\%|\^|\&|\*|\(|\)|\[|\]|\-|\+|=|\>|\/|\,|\;|\'|\{|\}|\<|\\]*
 "var" {return KEY_VAR; }
 "charptr" {return KEY_CHARPTR;}
 "intptr" {return KEY_INTPTR;}
-
-
 "string" {return KEY_STRING;}
 "integer" {return KEY_INTEGER;}
+"int" {return KEY_INTEGER;}
 
 "real"	{return KEY_REAL;}
+"realptr" {return KEY_REALPTR;}
 
+"void" {return KEY_VOID;}
 
 "boolean" {return KEY_BOOLEAN;}
 "char" {return KEY_CHAR;}

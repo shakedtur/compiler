@@ -20,7 +20,9 @@ char* printDef(int def) {
 	case REAL_:
 		return "real";
 		break;
-
+	case REALPTR_:
+		return "realptr";
+		break;
 	case CHAR_:
 		return "char";
 		break;
@@ -233,7 +235,7 @@ int checkSemantics(void* ast) {
 		type* type_ = (type*)ast;
 		lit* lit_ = (lit*)ast;
 		lit_integer* lit_i = (lit_integer*)ast;
-		lit_real* lit_i = (lit_real*)ast;
+		lit_real* lit_r = (lit_real*)ast;
 		lit_char* lit_c = (lit_char*)ast;
 		lit_string* lit_s = (lit_string*)ast;
 		lit_boolean* lit_b = (lit_boolean*)ast;

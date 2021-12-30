@@ -20,7 +20,6 @@ char* printDef(int def) {
 	case REAL_:
 		return "real";
 		break;
-
 	case CHAR_:
 		return "char";
 		break;
