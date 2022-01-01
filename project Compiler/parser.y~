@@ -252,7 +252,7 @@ TYPE : KEY_CHARPTR { $$ = make_type(CHARPTR_,0);}
 	 | KEY_REAL { $$ = make_type(REAL_,0);}
 	 | KEY_BOOLEAN  { $$ = make_type(BOOLEAN_,0);}
 	 | KEY_CHAR { $$ = make_type(CHAR_,0);}
-	 | KEY_VOID { $$ = NULL}
+	 | KEY_VOID { $$ = void;}
 	
 	 ;
 
@@ -300,11 +300,11 @@ int main(){
 	currentScope = 0;
 	yyparse();
 
-	//print_ast(ast);
+	print_ast(ast);
 
 	checkSemantics(ast);
 
-	//print_table(symtable);
+	print_table(symtable);
 
 	tacGeneration(ast);
 }

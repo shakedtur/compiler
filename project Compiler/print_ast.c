@@ -45,7 +45,7 @@ void print_ast(void* ast)
 	switch(token){
 
 		case PROGRAM_:
-			printf("Program:\n");
+			printf("(CODE:\n");
 			for(i = program_->proc_l_->i;i>0;i--)
 				print_ast(program_->proc_l_->list[i - 1]);
 
@@ -53,14 +53,14 @@ void print_ast(void* ast)
 
 		case PROCEDURE_:
 
-			printf("PROCEDURE: ");
+			printf("\t(FUNC\n");
 			print_ast(proc_->id);
 
 			printf("(");
 			for(i = proc_->param_l->i;i>0;i--)
 				print_ast(proc_->param_l->list[i - 1]);
 			printf(")");
-			printf("RETURN TYPE: ");
+			printf("\tRETURN %s",proc_->return_type);
 			print_ast(proc_->return_type);
 			printf("\n");
 			print_ast(proc_->body);
@@ -78,12 +78,13 @@ void print_ast(void* ast)
 			
 
 		case PARAMS_:
+			printf("\n\tARGS(");
 			for(i=params_->param_list->i;i>0;i--)
 			{
 				print_ast(params_->param_list->list[i - 1]);
 				printf(",");
 			}
-			printf(":");
+			printf("\b)");
 			print_ast(params_->type_);
 			break;
 
@@ -95,10 +96,13 @@ void print_ast(void* ast)
 
 
 		case BODY_:
+			printf("\t(BODY",type_->type_);
 			for(i = body_->proc_l->i;i>0;i--)
 				print_ast(body_->proc_l->list[i - 1]);
+			printf("\n\t\t(BLOCK");
 
 			for(i = body_->var_dec_l->i;i>0;i--){
+				printf("\t");
 				print_ast(body_->var_dec_l->list[i - 1]);
 				printf("\n");	
 			}
@@ -106,12 +110,12 @@ void print_ast(void* ast)
 			for(i = body_->stmts_->i;i>0;i--)
 				print_ast(body_->stmts_->list[i - 1]);
 
-			printf("\n");
+			printf("\n)");
 			print_ast(body_->ret_stmt);
 			break;
 
 		case VAR_DECS_:
-			printf("type:");
+			printf("type");
 			print_ast(var_decs_->var_type);
 			for(i = var_decs_->var_list->i;i>0;i--){
 				print_ast(var_decs_->var_list->list[i -1]);
@@ -125,13 +129,15 @@ void print_ast(void* ast)
 			break;
 
 		case ASSIGN_:
+			printf("\t\t");
 			print_ast(assign_->lvalue);
-			printf(" = ");
+			printf("( = ");
 			print_ast(assign_->rvalue);
+			printf(")");
 			break;
 
 		case ASSIGN_DER_:
-			printf("Dereference of ( ");
+			printf("\t\t");
 			print_ast(assign_->lvalue);
 			printf(" )");
 			printf(" = ");
@@ -159,11 +165,11 @@ void print_ast(void* ast)
 			break;
 
 		case BOOLEAN_LITERAL_:
-			printf(" (BOOL: %d ) ",lit_b->value);
+			printf(" (BOOL %d ) ",lit_b->value);
 			break;
 
 		case NULL_LITERAL_:
-			printf(" (NULLLLL:) ");
+			printf(" (NULLS) ");
 			break;
 
 		case RELOP_:
@@ -263,40 +269,41 @@ void print_ast(void* ast)
 			break;
 
 		case RET_STMT_:
-			printf("return: ");
+			printf("\t(RET ");
 			print_ast(ret_->exp);
 			break;
 
 		case FOR_:
-			printf("\nFOR: COND: ");
+			printf("\n\t(FOR ");
 			print_ast(for_->cond);
 			print_ast(for_->for_block);
 			break;
 
 		case WHILE_:
-			printf("\nWHILE: COND: ");
+			printf("\n\t(WHILE ");
 			print_ast(while_->cond);
 			print_ast(while_->while_block);
 			break;
 
 		case IF_:
-			printf("\nIF: COND: ");
+			printf("\n\t(IF ");
 			print_ast(if_->cond);
 			print_ast(if_->if_block);
 			break;
 
 		case IF_ELSE_:
-			printf("\nIF: COND: ");
+			printf("\n\t(IF-EL");
 			print_ast(if_else_->cond);
 			print_ast(if_else_->if_block);
-			printf("\nELSE: ");
+			printf("\n\tELSE ");
 			print_ast(if_else_->else_block);			
 			break;
 
 		case CODE_BLOCK_:
-			printf("\n{\n");
+			printf("\n\tBLOCK\n");
 
 			for(i = block_->var_decs_l->i;i>0;i--){
+				printf("\t");
 				print_ast(block_->var_decs_l->list[i - 1]);
 				printf("\n");	
 			}
@@ -304,12 +311,12 @@ void print_ast(void* ast)
 			for(i = block_->stmts->i;i>0;i--)
 				print_ast(block_->stmts->list[i - 1]);
 
-			printf("\n}\n");
+			printf("\n)\n");
 			break;
 
 		case FN_CALL_:
 			print_ast(call_->id);
-			printf("( ");
+			printf("\t( ");
 			for(i = call_->expr_l->i;i>0;i--){
 				print_ast(call_->expr_l->list[i - 1]);
 				printf(" , ");

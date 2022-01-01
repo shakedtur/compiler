@@ -519,11 +519,11 @@ int main(){
 	currentScope = 0;
 	yyparse();
 
-	//print_ast(ast);
+	print_ast(ast);
 
 	checkSemantics(ast);
 
-	//print_table(symtable);
+	print_table(symtable);
 
 	tacGeneration(ast);
 }

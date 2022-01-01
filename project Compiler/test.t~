@@ -1,7 +1,6 @@
 int foo() {
 
-
-	var int a,b ;
+	var int a,a ;
 	
 
 	a=23;
@@ -14,7 +13,13 @@ int foo() {
 	return a;
 }
 
-void main(){
 
-return NULL;
+void main(){
+	var int a,b;
+	a=0;
+	while(a<10) {
+	b=foo(3,4);
+	a=a+b;
+	}
+return 0;
 }
