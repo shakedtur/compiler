@@ -42,19 +42,19 @@ void printError(int errorType, int ln, int t1, int t2, symbol_ref* symbol) {
 	switch (errorType) {
 
 	case ERROR_PLUS:
-		printf("PLUS requires integers or a pointer + integer - got %s + %s", printDef(t1), printDef(t2));
+		printf("PLUS requires integers or real numbers or a pointer + integer/real - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_MINUS:
-		printf("MINUS requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf("MINUS requires integers or real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_DIV:
-		printf("DIV requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf("DIV requires integers or real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_MULTI:
-		printf("MULTI requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf("MULTI requires integers or real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 
@@ -92,19 +92,19 @@ void printError(int errorType, int ln, int t1, int t2, symbol_ref* symbol) {
 		break;
 
 	case ERROR_GE:
-		printf(">= requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf(">= requires 2 integers or 2 real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_GT:
-		printf("> requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf("> requires 2 integers or 2 real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_LE:
-		printf("<= requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf("<= requires 2 integers or 2 real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_LT:
-		printf("< requires integers - got %s + %s", printDef(t1), printDef(t2));
+		printf("< requires 2 integers or 2 real numbers - got %s + %s", printDef(t1), printDef(t2));
 		break;
 
 	case ERROR_NOT:
@@ -126,7 +126,7 @@ void printError(int errorType, int ln, int t1, int t2, symbol_ref* symbol) {
 	case ERROR_PRO_DEC:
 		printf("The function %s has already been declared!", symbol->id);
 		break;
-	default: printf("a wild error has appeared");
+	default: printf("OH NO! UNKNOWN ERROR! :(");
 		break;
 
 	}
@@ -416,7 +416,7 @@ int checkSemantics(void* ast) {
 		case FOR_:
 			tmp = checkSemantics(for_->cond);
 			if (tmp != BOOLEAN_) {
-				printf("line %d: for cond has to be a boolean, got %s\n", 					for_->line_num, printDef(tmp));
+				printf("line %d: for cond has to be a boolean, got %s\n", for_->line_num, printDef(tmp));
 			}
 			checkSemantics(for_->for_block);
 			break;
